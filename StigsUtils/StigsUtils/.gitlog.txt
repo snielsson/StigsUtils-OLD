@@ -1,5 +1,0 @@
-commit 28c172ee6a81c117ddd5e33d74900a90a68b4c97
-Author: Stig Schmidt Nielsson <stigbn@gmail.com>
-Date:   Fri Sep 17 06:47:53 2021 +0200
-
-    Initial commit

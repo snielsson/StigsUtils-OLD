@@ -1,0 +1,11 @@
+commit b570faebea839e22e1377be64ebfef0f0cc61f3e
+Author: Stig Schmidt Nielsson <stigbn@gmail.com>
+Date:   Sun Jun 12 10:01:33 2022 +0200
+
+    Adding stuff collected from old util projects
+
+commit 28c172ee6a81c117ddd5e33d74900a90a68b4c97
+Author: Stig Schmidt Nielsson <stigbn@gmail.com>
+Date:   Fri Sep 17 06:47:53 2021 +0200
+
+    Initial commit
