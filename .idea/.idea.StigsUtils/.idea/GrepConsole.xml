@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GrepConsole">
+    <option name="pinnedGrepConsolesState">
+      <PinnedGrepConsolesState>
+        <option name="map">
+          <map>
+            <entry>
+              <key>
+                <RunConfigurationRef>
+                  <option name="name" value="Unit Tests" />
+                </RunConfigurationRef>
+              </key>
+              <value>
+                <Pins />
+              </value>
+            </entry>
+          </map>
+        </option>
+      </PinnedGrepConsolesState>
+    </option>
+    <option name="tailHistory">
+      <TailHistory>
+        <option name="items">
+          <set>
+            <TailItem>
+              <option name="path" value="$PROJECT_DIR$/Utils/StigsUtils.Tests/DataTypes/Collections/StatsTests.cs" />
+            </TailItem>
+          </set>
+        </option>
+      </TailHistory>
+    </option>
+  </component>
+</project>

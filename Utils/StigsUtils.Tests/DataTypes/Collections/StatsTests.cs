@@ -1,6 +1,7 @@
 ﻿// Copyright © 2014-2022 Stig Schmidt Nielsson. All Rights Reserved. Code distributed under MIT license.
 using System.Linq;
 using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using StigsUtils.DataTypes.Collections;
 using StigsUtils.Extensions;
 using StigsUtils.TestUtils.XUnit;
@@ -23,7 +24,7 @@ public class StatsTests : XUnitTestBase {
 		stats.Median.Should().Be(2);
 		stats.Mean.Should().Be(items.Mean());
 
-		Output.WriteLine(stats.ToPrettyJson());
+		Logger.LogInformation(stats.ToPrettyJson());
 
 	}
 
@@ -93,8 +94,8 @@ public class StatsTests : XUnitTestBase {
 		stats.Values.Should().BeEquivalentTo(sortedItems);
 		stats.Mean.Should().Be(items.Mean());
 		stats.Median.Should().Be(new decimal(3.5));
-		Output.WriteLine(stats.ToPrettyJson());
-		Output.WriteLine(stats.ToString());
+		Logger.LogInformation(stats.ToPrettyJson());
+		Logger.LogInformation(stats.ToString());
 
 	}
 }

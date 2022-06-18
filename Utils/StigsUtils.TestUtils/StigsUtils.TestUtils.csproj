@@ -7,9 +7,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="autobogus" Version="2.13.1"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0"/>
-        <PackageReference Include="xunit.extensibility.core" Version="2.4.1"/>
+        <PackageReference Include="autobogus" Version="2.13.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+        <PackageReference Include="xunit.extensibility.core" Version="2.4.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Logging" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\StigsUtils\StigsUtils.csproj" />
     </ItemGroup>
 
 </Project>
