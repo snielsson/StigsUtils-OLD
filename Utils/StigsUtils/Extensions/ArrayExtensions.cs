@@ -1,9 +1,34 @@
 ﻿// Copyright © 2014-2022 Stig Schmidt Nielsson. All Rights Reserved. This file is Open Source and distributed under the MIT license - see LICENSE file.
+using System.Collections;
 namespace StigsUtils.Extensions;
 
 public static class ArrayExtensions {
 	
+	public static IEnumerable ToEnumerable(this Array @this) {
+		var enumerator = @this.GetEnumerator();
+		while (enumerator.MoveNext()) yield return enumerator.Current;
+	}
+	public static IEnumerable<T> ToEnumerable<T>(this Array @this) {
+		var enumerator = @this.GetEnumerator();
+		while (enumerator.MoveNext()) yield return (T) enumerator.Current;
+	}
+	public static T[] ToArray<T>(this Array @this) {
+		var result = new T[@this.LongLength];
+		for (var i = 0; i < @this.LongLength; i++) {
+			result[i] = (T)@this.GetValue(i)!;
+		}
+		return result;
+	}
+	public static object[] ToArray(this Array @this) {
+		var result = new object[@this.LongLength];
+		for (var i = 0; i < @this.LongLength; i++) {
+			result[i] = @this.GetValue(i)!;
+		}
+		return result;
+	}
+	
 	public static T[] AsArray<T>(this T @this) => new[] {@this};
+
 	/// <summary>
 	///   Gets element at the given index. If index is negative, the array is indexed from the last element.
 	///   Using index -1 will get the last element, -2 the second last etc.

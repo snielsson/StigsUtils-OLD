@@ -21,18 +21,22 @@ public static class ByteArrayExtensions {
 		}
 	}
 
-	public static T[] BlitFromByteArray<T>(this byte[] @this, int byteSizeOfElements) {
-		GCHandle pinnedHandle = default(GCHandle);
-		try {
-			var count = @this.Length.AsMultiplesOf(byteSizeOfElements);
-			var result = new T[count];
-			pinnedHandle = GCHandle.Alloc(result, GCHandleType.Pinned);
-			Marshal.Copy(@this, 0, pinnedHandle.AddrOfPinnedObject(), @this.Length);
-			return result;
-		}
-		finally {
-			if (pinnedHandle.IsAllocated) pinnedHandle.Free();
-		}
+	// public static T[] BlitFromByteArray<T>(this byte[] @this, int byteSizeOfElements) {
+	// 	GCHandle pinnedHandle = default(GCHandle);
+	// 	try {
+	// 		var count = @this.Length.AsMultiplesOf(byteSizeOfElements);
+	// 		var result = new T[count];
+	// 		pinnedHandle = GCHandle.Alloc(result, GCHandleType.Pinned);
+	// 		Marshal.Copy(@this, 0, pinnedHandle.AddrOfPinnedObject(), @this.Length);
+	// 		return result;
+	// 	}
+	// 	finally {
+	// 		if (pinnedHandle.IsAllocated) pinnedHandle.Free();
+	// 	}
+	// }	
+	
+	public static int ReadBigEndianInt32(this byte[] @this, int offset = 0) {
+		return (@this[offset+0] << 24) | (@this[offset+1] << 16) | (@this[offset+2] << 8) | @this[offset+3];
 	}	
 	
 	public static T[] BlitFromBytes<T>(this byte[] @this, int size, T[]? destination = null) {
@@ -134,4 +138,26 @@ public static class ByteArrayExtensions {
 		}
 		return result;
 	}
-}
+	
+	public static unsafe byte[] GetBytes(this ushort value) {
+		var numArray = new byte[sizeof(ushort)];
+		fixed (byte* numPtr = numArray) *(ushort*) numPtr = value;
+		return numArray;
+	}
+
+	public static unsafe void WriteBytes(this ushort value, byte[] buffer, int offset) {
+		if (offset > buffer.Length + sizeof(ushort)) throw new IndexOutOfRangeException();
+		fixed (byte* numPtr = &buffer[offset]) *(ushort*) numPtr = value;
+	}
+
+	public static unsafe byte[] GetBytes(this short value) {
+		var numArray = new byte[sizeof(short)];
+		fixed (byte* numPtr = numArray) *(short*) numPtr = value;
+		return numArray;
+	}
+
+	public static unsafe void WriteBytes(this short value, byte[] buffer, int offset) {
+		if (offset > buffer.Length + sizeof(short)) throw new IndexOutOfRangeException();
+		fixed (byte* numPtr = &buffer[offset]) *(short*) numPtr = value;
+	}
+}	

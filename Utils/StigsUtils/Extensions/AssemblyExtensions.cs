@@ -1,8 +1,21 @@
 ﻿// Copyright © 2014-2022 Stig Schmidt Nielsson. All Rights Reserved. Code distributed under MIT license.
 using System.Reflection;
+using Microsoft.Extensions.Configuration;
+using StigsUtils.DataTypes;
 namespace StigsUtils.Extensions;
 
 public static class AssemblyExtensions {
+		public static string GetInformationalVersion(this Assembly? @this)
+			=> @this?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? string.Empty;
+		public static string GetFileVersion(this Assembly? @this)
+			=> @this?.GetCustomAttribute<AssemblyFileVersionAttribute>()?.Version ?? string.Empty;
+		public static string GetAssemblyVersion(this Assembly? @this)
+			=> @this?.GetCustomAttribute<AssemblyVersionAttribute>()?.Version ?? string.Empty;
+		public static VersionInfo? GetVersionInfo(this Assembly? @this) {
+			var info = @this.GetInformationalVersion();
+			return VersionInfo.Parse(info); 
+		}
+	
 	// Inspired by this Jon Skeet answer on StackOverflow: : https://stackoverflow.com/a/7889272/193414
 	public static IEnumerable<Type> GetLoadableTypes(this Assembly assembly) {
 		if (assembly == null) throw new ArgumentNullException(nameof(assembly));
@@ -33,4 +46,19 @@ public static class AssemblyExtensions {
 	public static IEnumerable<Type> GetImplementations(this Assembly @this, Type type) => @this
 		.GetLoadableTypes()
 		.Where(x => x.IsAssignableFrom(type));
+	
+	[Obsolete("Not tested")]
+	public static T LoadAssemblyConfigurationFiles<T>(this Assembly @this, string? environmentName, string configFileDir = "ConfigurationFiles", string? fileName = null, bool throwOnNoFiles = true) {
+		var baseFilePath = Path.Combine(Path.GetDirectoryName(@this.Location)!, configFileDir, (fileName ?? @this.GetName().Name)!);
+		var files = new[] {
+			$"{baseFilePath}.json",
+			$"{baseFilePath}.Default.json",
+			$"{baseFilePath}.{environmentName}.json"
+		}.Where(File.Exists).ToArray();
+		if (throwOnNoFiles && files.Length == 0) throw new Exception($"No config files found for assembly {@this.GetName().Name}, baseFilePath = {baseFilePath}");
+		IConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+		foreach (var file in files) configurationBuilder.AddJsonFile(file, false);
+		var result = configurationBuilder.Build().Get<T>();
+		return result;
+	}	
 }

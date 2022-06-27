@@ -1,7 +1,7 @@
 ﻿// Copyright © 2014-2022 Stig Schmidt Nielsson. All Rights Reserved. Code distributed under MIT license.
 namespace StigsUtils.TimeUtils;
 
-public interface ITimeService {
+public interface ITime {
 	UtcDateTime UtcNow { get; }
 	// ITimeService CallAt(UtcDateTime val, Action action);
 	// ITimeService CallAt(UtcDateTime val, Action<UtcDateTime> action);
@@ -11,7 +11,7 @@ public interface ITimeService {
 	// ITimeService CallIn(TimeSpan val, Action<UtcDateTime, UtcDateTime> action);
 }
 
-public class TimeService : ITimeService {
+public class Time : ITime {
 	private readonly UtcDateTime? _frozenTime = null;
 	public UtcDateTime UtcNow => _frozenTime ?? DateTime.UtcNow;
 

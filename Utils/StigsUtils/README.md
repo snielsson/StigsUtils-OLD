@@ -58,6 +58,68 @@ Add this to .csproj file to get a dump of the git log when building project:
 - NotificationService
 - ExcelService
 
+# Guidelines and conventions
+
+### Abbreviations
+
+Abbreviations should be used sparringly and only used for parameters and arguments and not in class and method, and if possible be limited to
+the below list of common abbriviations and recommended use.
+
+#### Common Abbriviations
+
+|Abbreviation| Recommended use
+|
+| ex         | Used for exception instances in catch statements and for exception parameters in methods.
+| i, j		 | Used for index variables in loops.
+| msg		 | Used to name objects representing some kind of message or message func.
+| sb		 | Used to name an instance of a StringBuilder.
+| x,y,z		 | Used to name parameters in lambda functions to keep then short and read like mathematical functions.
+| _t         | Used to represent an instance of ITimeService.
+| _fs         | Used to represent an instance of IFileSystemService.
+| ioc        | Typically stands for 'Inversion Of Control'.
+| db		| Typically stands for 'Database'.
+| conn		| Typically stands for 'Connection'.
+
+Abbreviations should be used sparringly, but a number of
+
+### Naming Conventions
+
+#### Conversion methods
+Names of conversion methods used to change or convert one object to another type are typically starts with `To` or `As`. `To` is used when the method is expected to work, and and exception is thrown if it does not work.
+`As` is used if the method may fail without throwing an exception.
+
+Example:
+
+```c#
+/// this method retuns null if x is not a multiple of y.
+int? AsMultiplesOf(int x,int y)
+
+/// this method retuns null if x is not a multiple of y.
+int? AsMultiplesOf(int x,int y)
+```
+
+#### Common injected dependencies
+
+A number of commonly injected dependencies are typically named as shown in the
+table below, where the constructor argument used to initialize the private variable referring to the dependency, does not use the leading underscore. For example, when injecting an `ITimeService`, the constructor argument is named `t` while the private variable referencing the dependency instance is named `_t`.
+
+| Variable name | Type of injected dependency
+|
+| _t | `ITimeService`.
+| _l | `ILogService`.
+| _fs | `IFileSystemService`.
+
+
+#### Ensure... methods
+
+A method have having a name starting with 'Ensure' should check some condition
+if the condition is not met, then attempt to ensure that the condition is met.
+
+One example could be a method named `EnsureDirectoryCreated` which checks if
+a given path is a directory and if not, attempts to create the directory.
+
+# Reference documentation
+
 ### ContextService - rename to AppService ?
 
 ContextService collects a number of fundamental cross cutting services in a

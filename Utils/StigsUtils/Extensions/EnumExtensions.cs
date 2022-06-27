@@ -29,4 +29,34 @@ public static class EnumExtensions {
 		});
 		return valueKeyMap[val];
 	}
+	
+		public static bool IsEnumWithConsecutiveValues(this Type @this) {
+			if (!@this.IsEnum) return false;
+			var indexOfNonConsecutiveValue = GetIndexOfNonConsecutiveValue(@this);
+			return indexOfNonConsecutiveValue == -1;
+		}
+		private static int GetIndexOfNonConsecutiveValue(Type type) {
+			var values = Enum.GetValues(type).ToArray<long>();
+			if (values.Length == 1) return -1;
+			var prev = values[0];
+			for (int i = 1; i < values.Length; i++) {
+				var val = values[i];
+				if (val != prev + 1) return i;
+				prev = val;
+			}
+			return -1;
+		}
+		public static Type AssertIsEnumWithConsecutiveValues(this Type @this) {
+			if(!@this.IsEnum) @this.Throw($"The type {@this} is not an enumeration.");
+			var indexOfNonConsecutiveValue = GetIndexOfNonConsecutiveValue(@this);
+			if (indexOfNonConsecutiveValue == -1) return @this;
+			Array values = Enum.GetValues(@this);
+			string[] names = Enum.GetNames(@this);
+			object prevValue = values.GetValue(indexOfNonConsecutiveValue - 1)!;
+			var prevName = names[indexOfNonConsecutiveValue - 1];
+			object value = values.GetValue(indexOfNonConsecutiveValue)!;
+			var name = names[indexOfNonConsecutiveValue];
+			if (!@this.IsEnumWithConsecutiveValues()) @this.Throw($"The enum type {@this} does not have consecutive values from {prevName}({prevValue}) to {name}({value}).");
+			return @this;
+	}	
 }

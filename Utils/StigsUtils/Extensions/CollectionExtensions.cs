@@ -9,6 +9,11 @@ public static class CollectionExtensions {
 		return @this;
 	}
 	
+	public static ICollection<T> AddTo<T>(this T @this, ICollection<T> collection) { 
+		collection.Add(@this);
+		return collection;
+	}
+		
 	public static bool IsNullOrEmpty<T>(this ICollection<T>? @this) {
 		if (@this == null) return true;
 		return @this.Count == 0;
@@ -95,4 +100,6 @@ public static class CollectionExtensions {
 		list.Insert(startIndex, value);
 		return startIndex;
 	}
+	
+	
 }

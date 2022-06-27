@@ -1,24 +1,8 @@
-﻿// Copyright © 2014-2022 Stig Schmidt Nielsson. All Rights Reserved. Code distributed under MIT license.
+﻿// Copyright © 2014-2022 Stig Schmidt Nielsson. All Rights Reserved. This file is Open Source and distributed under the MIT license - see LICENSE file.
 using System.Collections;
 namespace StigsUtils.Extensions;
 
 public static class LinqExtensions {
-	public static bool In<T>(this T @this, params T[]? arg) {
-		return arg?.Any(x => x?.Equals(@this) ?? false) ?? true;
-		// Null arg is ignore, ie. does no filtering.
-	}
-
-	public static bool In<T>(this T @this, IEnumerable<T>? arg) {
-		return arg?.Any(x => x?.Equals(@this) ?? false) ?? true;
-	}
-
-	public static IEnumerable<T> NotNull<T>(this IEnumerable<T> @this) {
-		return @this.Where(x => x != null);
-	}
-
-	public static bool IsNullOrEmpty<T>(this IEnumerable<T>? @this) => !@this?.Any() ?? true;
-
-	public static bool IsEmpty<T>(this IEnumerable<T> @this) => !@this.Any();
 
 	public static IEnumerable<T> Concatenate<T>(this IEnumerable<T> @this, params IEnumerable<T>[] args) {
 		return @this.Concat(args.SelectMany(x => x));
@@ -28,29 +12,48 @@ public static class LinqExtensions {
 		return args.SelectMany(x => x);
 	}
 
+	public static IEnumerable<T> EmptyIfNull<T>(this IEnumerable<T>? @this) => @this ?? Array.Empty<T>();
+
+	public static IEnumerable<T> Flatten<T>(this IEnumerable<IEnumerable<T>> @this) => @this.SelectMany(x => x);
+
+	//public static IEnumerable<T> ForEach<T>(this IEnumerable<T> @this, Func<T, bool> predicate, Action<T> action) => @this.Where(predicate).ForEach(x=>action(x));
+
+	public static IEnumerable<T> ForEach<T>(this IEnumerable<T> @this, Action<T> action) {
+		foreach (T item in @this) {
+			action(item);
+			yield return item;
+		}
+	}
+
+	// public static TOutput ForEach<TInput, TOutput>(this IEnumerable<TInput> @this, Func<TInput, TOutput> func) {
+	// 	TOutput last = default!;
+	// 	foreach (TInput item in @this) last = func(item);
+	// 	return last;
+	// }
+
+	public static bool IsContainedBy<T>(this T @this, IEnumerable<T> items) => items.Contains(@this);
+
+	public static bool IsContainedBy<T>(this T @this, params T[] items) => items.Contains(@this);
+
+	public static bool IsEmpty<T>(this IEnumerable<IEnumerable<T>> @this) => !@this.Any();
+
+	public static bool IsEmpty<T>(this T[] @this) => @this.Length == 0;
+
+	public static bool IsEmpty<T>(this IEnumerable<T> @this) => !@this.Any();
+
+	public static bool IsNullOrEmpty<T>(this IEnumerable<T>? @this) => @this == null || @this.Any();
+
 	public static IEnumerable<T> Map<T>(this IEnumerable<T> @this, Func<T, T> func) => @this.Select(func);
 
-	public static T ForEach<T>(this IEnumerable<T> @this, Func<T, bool> predicate, Action<T> action) => @this.Where(predicate).ForEach(action);
-
-	public static T ForEach<T>(this IEnumerable<T> @this, Action<T> action) {
-		T last = default!;
-		foreach (T item in @this) action(last = item);
-		return last;
+	public static IEnumerable<T> NotNull<T>(this IEnumerable<T> @this) {
+		return @this.Where(x => x != null);
 	}
 
-	public static TOutput ForEach<TInput, TOutput>(this IEnumerable<TInput> @this, Func<TInput, TOutput> func) {
-		TOutput last = default!;
-		foreach (TInput item in @this) last = func(item);
-		return last;
-	}
-
-	public static IEnumerable<T> EmptyIfNull<T>(this IEnumerable<T>? @this) => @this ?? Array.Empty<T>();
+	public static IEnumerable OrEmpty(this IEnumerable? @this) => @this ?? Array.Empty<object>();
 
 	public static IEnumerable<T> SkipNulls<T>(this IEnumerable<T> @this) {
 		return @this.Where(x => x != null);
 	}
-
-	public static IReadOnlyList<T> ToReadOnlyList<T>(this IEnumerable @this, Func<object?, T> convert) => @this.Cast<object?>().Select(convert).ToList();
 
 	public static IReadOnlyDictionary<TKey, IEnumerable<TValue>> ToReadOnlyDictionary<TKey, TValue>(this IEnumerable<IGrouping<TKey, TValue>>? @this) where TKey : notnull {
 		var result = new Dictionary<TKey, IEnumerable<TValue>>();
@@ -94,5 +97,5 @@ public static class LinqExtensions {
 		return result;
 	}
 
-	public static IEnumerable OrEmpty(this IEnumerable? @this) => @this ?? Array.Empty<object>();
+	public static IReadOnlyList<T> ToReadOnlyList<T>(this IEnumerable @this, Func<object?, T> convert) => @this.Cast<object?>().Select(convert).ToList();
 }

@@ -23,9 +23,9 @@ public struct UtcDateTime : IComparable<UtcDateTime>, IComparable, IEquatable<Ut
 
 	public UtcDateTime(DateTime dateTime) => Value = new DateTime(dateTime.Ticks, DateTimeKind.Utc);
 
-  public UtcDateTime(int year, int month = 1, int day = 1, int hour = 0, int minute = 0, int second = 0) => Value = new DateTime(year, month, day, hour, minute, second, DateTimeKind.Utc);
+	public UtcDateTime(int year, int month = 1, int day = 1, int hour = 0, int minute = 0, int second = 0) => Value = new DateTime(year, month, day, hour, minute, second, DateTimeKind.Utc);
 
-  // Properties
+	// Properties
 	public DateTime Value { get; }
 
 	//Conversion methods:
@@ -44,13 +44,14 @@ public struct UtcDateTime : IComparable<UtcDateTime>, IComparable, IEquatable<Ut
 
 	public int ToUnixTime() => Value.ToUnixTime();
 
-  // Time manipulation
-  private static UtcDateTime? _now;
-  public static UtcDateTime Now { get => _now ?? DateTime.UtcNow; }
-  public static UtcDateTime Set(UtcDateTime? val) {
-    _now = val;
-    return Now;
-  }
+	// Time manipulation
+	private static UtcDateTime? _now;
+	public static UtcDateTime Now => _now ?? DateTime.UtcNow;
+
+	public static UtcDateTime Set(UtcDateTime? val) {
+		_now = val;
+		return Now;
+	}
 
 	// Readers
 	public long Ticks => Value.Ticks;
@@ -63,7 +64,6 @@ public struct UtcDateTime : IComparable<UtcDateTime>, IComparable, IEquatable<Ut
 	public int Month => Value.Month;
 	public DateTime ToDateTime => Value;
 
-  
 	// Modifiers
 	public UtcDateTime Add(TimeSpan x) => Value.Add(x);
 

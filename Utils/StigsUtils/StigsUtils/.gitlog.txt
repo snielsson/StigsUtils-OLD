@@ -1,3 +1,9 @@
+commit 0e89ee50095e2d13765ddeef8fe31a1360eaf004
+Author: Stig Schmidt Nielsson <xstin@saxopayments.com>
+Date:   Sat Jun 18 10:17:29 2022 +0200
+
+    Extended XUnitTestBase with logger writing to test output.
+
 commit fb8270c6667d9b2b95e30d3e6f8ab9fff7ff8993
 Author: Stig Schmidt Nielsson <stigbn@gmail.com>
 Date:   Fri Jun 17 07:51:34 2022 +0200
