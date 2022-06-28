@@ -27,8 +27,8 @@ public static class IntExtensions {
 	}
 
 	public static int ToMultiplesOf(this int @this, int multipleSize) {
-		@this.AssertIsMultipleOf(multipleSize);
-		return @this / multipleSize;
+		@this.AssertIsMultipleOf(Math.Abs(multipleSize));
+		return Math.Abs(@this / multipleSize);
 	}
 
 	public static bool IsMultipleOf(this int @this, int multipleSize) => @this % multipleSize == 0;

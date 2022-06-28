@@ -20,7 +20,8 @@ public record Interval<T> : IComparable<Interval<T>>, IComparable where T : ICom
 		return obj is Interval<T> other ? CompareTo(other) : throw new ArgumentException($"Object must be of type {nameof(Interval<T>)}");
 	}
 
-	public int CompareTo(Interval<T> other) {
+	public int CompareTo(Interval<T>? other) {
+		if (other == null) throw new ArgumentNullException(nameof(other));
 		var startComparison = Start.CompareTo(other.Start);
 		if (startComparison != 0) return startComparison;
 		return End.CompareTo(other.End);

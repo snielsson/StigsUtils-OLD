@@ -1,0 +1,47 @@
+﻿
+        public string BuildMarkdownDocumentation()
+        {
+           StringBuilder sb = new StringBuilder();
+           sb.AppendLine($"Version: {ThisAssembly.AssemblyFileVersion}.<br/>"); 
+           sb.AppendLine($"Git commit id: {ThisAssembly.GitCommitId}.<br/>");
+           sb.AppendLine($"Git commit date: {ThisAssembly.GitCommitDate} UTC.<br/>");
+           sb.AppendLine($"Build Time: {new FileInfo(Assembly.GetExecutingAssembly().Location).CreationTimeUtc} UTC.<br/>");
+           sb.AppendLine($"Build Type: {ThisAssembly.AssemblyConfiguration}.<br/>");
+               
+           var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+           var path = Path.Combine(dir ?? "", "README.md");
+           sb.AppendLine(File.ReadAllText(path));
+           return sb.ToString();
+        }
+        
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "RegTech.TaxReporting.WebService",
+                    Description = BuildMarkdownDocumentation(),
+                });
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+#pragma warning disable 618
+                c.DescribeAllEnumsAsStrings();
+#pragma warning restore 618
+                c.IncludeXmlComments(xmlPath);
+                c.TagActionsBy(x =>
+                {
+                    var s = x.ActionDescriptor.ToString();
+                    if(!string.IsNullOrEmpty(x.GroupName)) return x.GroupName.AsArray();
+                    if (x.ActionDescriptor is ControllerActionDescriptor controllerActionDescriptor)
+                    {
+                        return new[] { controllerActionDescriptor.ControllerName };
+                    }
+                    throw new InvalidOperationException($"Unable to determine tag for {x.ActionDescriptor.DisplayName} endpoint {x.ActionDescriptor},consider adding ApiExplorerSettings attribute to Action method."); 
+                });
+                c.DocInclusionPredicate((s,a) => true);
+            });

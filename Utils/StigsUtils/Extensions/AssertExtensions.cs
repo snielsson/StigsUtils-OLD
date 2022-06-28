@@ -144,15 +144,15 @@ public static class AssertExtensions {
 
 	[Conditional("DEBUG")]
 	public static void DebugAssertIsMultipleOf(this int @this, int multipleSize) {
-		if (!@this.IsMultipleOf(multipleSize)) throw new Exception($"{@this} is not a multiple of {multipleSize}: div={@this / multipleSize}, mod={@this % multipleSize}.");
+		if (!@this.IsMultipleOf(multipleSize)) throw new ArgumentException($"{@this} is not a multiple of {multipleSize}: div={@this / multipleSize}, mod={@this % multipleSize}.");
 	}
 
 	public static void AssertIsMultipleOf(this int @this, int multipleSize) {
-		if (!@this.IsMultipleOf(multipleSize)) throw new Exception($"{@this} is not a multiple of {multipleSize}: div={@this / multipleSize}, mod={@this % multipleSize}.");
+		if (!@this.IsMultipleOf(multipleSize)) throw new ArgumentException($"{@this} is not a multiple of {multipleSize}: div={@this / multipleSize}, mod={@this % multipleSize}.");
 	}
 
 	public static int WhichIsMultipleOf(this int @this, int multipleSize) {
-		if (!@this.IsMultipleOf(multipleSize)) throw new Exception($"{@this} is not a multiple of {multipleSize}: div={@this / multipleSize}, mod={@this % multipleSize}.");
+		if (!@this.IsMultipleOf(multipleSize)) throw new ArgumentException($"{@this} is not a multiple of {multipleSize}: div={@this / multipleSize}, mod={@this % multipleSize}.");
 		return @this;
 	}
 

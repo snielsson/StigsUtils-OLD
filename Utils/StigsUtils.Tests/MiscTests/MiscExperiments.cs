@@ -16,10 +16,11 @@ public class MiscExperiments {
 
 public class StrictComparer<T> : IComparer<T> where T:IComparable<T>
 {
-	public static readonly StrictComparer<T> Default = new StrictComparer<T>();
-	public int Compare(T x, T y)
+	public static readonly StrictComparer<T> Default = new ();
+	public int Compare(T? x, T? y)
 	{
 		if (x == null) throw new ArgumentNullException(nameof(x));
+		if (y == null) throw new ArgumentNullException(nameof(y));
 		var result = x.CompareTo(y);
 		if (result == 0) return -1;
 		return result; 

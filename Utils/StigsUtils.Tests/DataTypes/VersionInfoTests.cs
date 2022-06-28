@@ -1,4 +1,5 @@
 ﻿// Copyright © 2014-2022 Stig Schmidt Nielsson. All Rights Reserved. This file is Open Source and distributed under the MIT license - see LICENSE file.
+using System.Diagnostics;
 using FluentAssertions;
 using StigsUtils.DataTypes;
 using Xunit;
@@ -7,7 +8,7 @@ namespace StigsUtils.Tests.DataTypes;
 public class VersionInfoTests { 
 	[Fact]
 	public void VersionInfoParseWorks() {
-		VersionInfo? sut1 = VersionInfo.Parse("1.2.3+SomeSha");
+		VersionInfo sut1 = VersionInfo.Parse("1.2.3+SomeSha") ?? throw new ArgumentNullException("VersionInfo.Parse(\"1.2.3+SomeSha\")");
 		sut1.MajorVersion.Should().Be(1);
 		sut1.MinorVersion.Should().Be(2);
 		sut1.PatchVersion.Should().Be(3);
@@ -15,7 +16,7 @@ public class VersionInfoTests {
 		sut1.PreReleaseVersion.Should().Be(null);
 		sut1.GitHeight.Should().Be(null);
 		sut1.GitCommitSha.Should().Be("SomeSha");
-		VersionInfo? sut2 = VersionInfo.Parse("1.2.3-prerelease.4.5+SomeSha");
+		VersionInfo sut2 = VersionInfo.Parse("1.2.3-prerelease.4.5+SomeSha")  ?? throw new ArgumentNullException();;
 		sut2.MajorVersion.Should().Be(1);
 		sut2.MinorVersion.Should().Be(2);
 		sut2.PatchVersion.Should().Be(3);

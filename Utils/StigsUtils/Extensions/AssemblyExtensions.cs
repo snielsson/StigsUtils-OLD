@@ -46,19 +46,4 @@ public static class AssemblyExtensions {
 	public static IEnumerable<Type> GetImplementations(this Assembly @this, Type type) => @this
 		.GetLoadableTypes()
 		.Where(x => x.IsAssignableFrom(type));
-	
-	[Obsolete("Not tested")]
-	public static T LoadAssemblyConfigurationFiles<T>(this Assembly @this, string? environmentName, string configFileDir = "ConfigurationFiles", string? fileName = null, bool throwOnNoFiles = true) {
-		var baseFilePath = Path.Combine(Path.GetDirectoryName(@this.Location)!, configFileDir, (fileName ?? @this.GetName().Name)!);
-		var files = new[] {
-			$"{baseFilePath}.json",
-			$"{baseFilePath}.Default.json",
-			$"{baseFilePath}.{environmentName}.json"
-		}.Where(File.Exists).ToArray();
-		if (throwOnNoFiles && files.Length == 0) throw new Exception($"No config files found for assembly {@this.GetName().Name}, baseFilePath = {baseFilePath}");
-		IConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
-		foreach (var file in files) configurationBuilder.AddJsonFile(file, false);
-		var result = configurationBuilder.Build().Get<T>();
-		return result;
-	}	
 }

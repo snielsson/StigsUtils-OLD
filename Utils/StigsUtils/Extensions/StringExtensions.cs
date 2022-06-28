@@ -202,9 +202,9 @@ public static class StringExtensions {
 
 	public static bool IsNotNullOrWhiteSpace(this string @this) => !string.IsNullOrWhiteSpace(@this);
 
-	public static bool IsNullOrEmpty(this string @this) => string.IsNullOrEmpty(@this);
+	public static bool IsNullOrEmpty(this string? @this) => string.IsNullOrEmpty(@this);
 
-	public static bool IsNullOrWhiteSpace(this string @this) => string.IsNullOrWhiteSpace(@this);
+	public static bool IsNullOrWhiteSpace(this string? @this) => string.IsNullOrWhiteSpace(@this);
 
 	public static string L(this string @this, string? locale = null) => LocalizeFunc(@this, locale ?? "");
 

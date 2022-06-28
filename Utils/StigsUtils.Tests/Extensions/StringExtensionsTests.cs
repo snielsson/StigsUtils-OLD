@@ -19,7 +19,7 @@ public class StringExtensionsTests {
 
 	[Fact]
 	public void IsNullOrEmptyWorks() {
-		Assert.True(((string)null).IsNullOrEmpty());
+		Assert.True(((string?)null).IsNullOrEmpty());
 		Assert.True("".IsNullOrEmpty());
 		Assert.False(" ".IsNullOrEmpty());
 		Assert.False("\n".IsNullOrEmpty());
@@ -29,7 +29,7 @@ public class StringExtensionsTests {
 
 	[Fact]
 	public void IsNullOrWhitespaceWorks() {
-		Assert.True(((string)null).IsNullOrWhiteSpace());
+		Assert.True(((string?)null).IsNullOrWhiteSpace());
 		Assert.True("".IsNullOrWhiteSpace());
 		Assert.True(" ".IsNullOrWhiteSpace());
 		Assert.True("\n".IsNullOrWhiteSpace());
