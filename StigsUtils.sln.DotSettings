@@ -261,10 +261,52 @@
 	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue">Copyright © 2014-$CURRENT_YEAR$ Stig Schmidt Nielsson. All Rights Reserved. This file is Open Source and distributed under the MIT license - see LICENSE file.
 </s:String>
 	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EPsi_002ECSharp_002ECodeStyle_002ESettingsUpgrade_002EAlwaysTreatStructAsNotReorderableMigration/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211106/@KeyIndexDefined">False</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211106/Applicability/=Live/@EntryIndexedValue">False</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211106/Applicability/=Live/@EntryIndexRemoved">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211106/Categories/=Imported_002023_002D07_002D2018/@EntryIndexedValue"></s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211106/Categories/=Imported_002023_002D07_002D2018/@EntryIndexRemoved">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211106/Categories/=StigsLiveTemplates/@EntryIndexedValue"></s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211106/Categories/=StigsLiveTemplates/@EntryIndexRemoved">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211106/Description/@EntryValue"></s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211106/Field/=NAME/Order/@EntryValue">-1</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211106/Reformat/@EntryValue">False</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211106/Scope/=2829C1F9DD5F3D4DAD1E8C16B9A7B799/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue"></s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211106/Scope/=2829C1F9DD5F3D4DAD1E8C16B9A7B799/CustomProperties/=minimumLanguageVersion/@EntryIndexRemoved">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211106/Scope/=2829C1F9DD5F3D4DAD1E8C16B9A7B799/Type/@EntryValue"></s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211106/Shortcut/@EntryValue"></s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211106/ShortenQualifiedReferences/@EntryValue">False</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211106/Text/@EntryValue"></s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211111/Description/@EntryValue">New interal sealed class.</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211111/Shortcut/@EntryValue">c</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=00000000000000000004201807211111/Text/@EntryValue">public interface I$NAME$ {
+}
+
+internal sealed class $NAME$ : I$NAME$ {
+    $END$
+}</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=2CAB0A567F30704CA99AA3EC249E3153/Text/@EntryValue">$HEADER$namespace $NAMESPACE$
 {
   internal sealed class $CLASS$ {$END$}
 }</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B8A3F989712FBE4AAD0BAB4FD64F8FA3/@KeyIndexDefined">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B8A3F989712FBE4AAD0BAB4FD64F8FA3/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B8A3F989712FBE4AAD0BAB4FD64F8FA3/Categories/=Imported_002023_002D07_002D2018/@EntryIndexedValue">Imported 23-07-2018</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B8A3F989712FBE4AAD0BAB4FD64F8FA3/Categories/=StigsLiveTemplates/@EntryIndexedValue">StigsLiveTemplates</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B8A3F989712FBE4AAD0BAB4FD64F8FA3/Description/@EntryValue">New static class.</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B8A3F989712FBE4AAD0BAB4FD64F8FA3/Field/=NAME/@KeyIndexDefined">True</s:Boolean>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B8A3F989712FBE4AAD0BAB4FD64F8FA3/Field/=NAME/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B8A3F989712FBE4AAD0BAB4FD64F8FA3/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B8A3F989712FBE4AAD0BAB4FD64F8FA3/Scope/=DE1D06BAB0895F4699DE4D0AC8637361/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B8A3F989712FBE4AAD0BAB4FD64F8FA3/Scope/=DE1D06BAB0895F4699DE4D0AC8637361/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B8A3F989712FBE4AAD0BAB4FD64F8FA3/Scope/=DE1D06BAB0895F4699DE4D0AC8637361/Type/@EntryValue">InCSharpTypeAndNamespace</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B8A3F989712FBE4AAD0BAB4FD64F8FA3/Shortcut/@EntryValue">C</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B8A3F989712FBE4AAD0BAB4FD64F8FA3/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=B8A3F989712FBE4AAD0BAB4FD64F8FA3/Text/@EntryValue">public static class $NAME$ {
+    $END$
+}</s:String>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=abcde/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=abcdef/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Comparers/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Nielsson/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Stigs/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

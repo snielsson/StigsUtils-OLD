@@ -1,0 +1,4 @@
+- go through src folder top-to-bottom and write test for each component/file.
+- Currently at: StigsUtils/DataTypes/Collections/ActionQueue.cs
+- Create devops pipeline.
+  - How to pack into nuget package and publish to nuget...

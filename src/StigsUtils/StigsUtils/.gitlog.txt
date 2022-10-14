@@ -1,0 +1,35 @@
+commit 93bdea96658dac1b89b3ecdecafb98b120fbeed8
+Author: Stig Schmidt Nielsson <stigbn@gmail.com>
+Date:   Tue Jun 28 08:29:11 2022 +0200
+
+    saving WIP
+
+commit b79d8a06bd31a6b0bdb9c5da7c48ae14f009b7c0
+Author: Stig Schmidt Nielsson <stigbn@gmail.com>
+Date:   Mon Jun 27 15:23:26 2022 +0200
+
+    WIP
+
+commit 0e89ee50095e2d13765ddeef8fe31a1360eaf004
+Author: Stig Schmidt Nielsson <xstin@saxopayments.com>
+Date:   Sat Jun 18 10:17:29 2022 +0200
+
+    Extended XUnitTestBase with logger writing to test output.
+
+commit fb8270c6667d9b2b95e30d3e6f8ab9fff7ff8993
+Author: Stig Schmidt Nielsson <stigbn@gmail.com>
+Date:   Fri Jun 17 07:51:34 2022 +0200
+
+    more stuff and introduced Utils, Experiments and Benchmarks folders.
+
+commit b570faebea839e22e1377be64ebfef0f0cc61f3e
+Author: Stig Schmidt Nielsson <stigbn@gmail.com>
+Date:   Sun Jun 12 10:01:33 2022 +0200
+
+    Adding stuff collected from old util projects
+
+commit 28c172ee6a81c117ddd5e33d74900a90a68b4c97
+Author: Stig Schmidt Nielsson <stigbn@gmail.com>
+Date:   Fri Sep 17 06:47:53 2021 +0200
+
+    Initial commit
